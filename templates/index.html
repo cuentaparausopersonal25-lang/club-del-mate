@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#174d36">
+  <meta name="description" content="Club del Mate: guías, curiosidades y juegos para disfrutar la cultura matera argentina.">
+  <title>Club del Mate | Nuestra cultura, nuestro ritual</title>
+  <style>
+    :root {
+      --green: #174d36;
+      --green-light: #26734c;
+      --mint: #e8f3e9;
+      --blue: #b9def5;
+      --cream: #fbfaf5;
+      --ink: #20352a;
+      --muted: #637269;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .topbar {
+      background: var(--green);
+      color: white;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 0.88rem;
+    }
+
+    header {
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid #e3e9e2;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: auto;
+      padding: 16px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 900;
+      font-size: 1.35rem;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: #6b9f65;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .navlinks a:hover {
+      color: var(--green-light);
+    }
+
+    .hero {
+      background:
+        radial-gradient(ellipse at 85% 15%, rgba(185,222,245,.75), transparent 35%),
+        linear-gradient(125deg, #e8f3e9 0%, #fbfaf5 65%);
+      padding: 76px 22px 84px;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--green-light);
+      font-size: .82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      color: var(--green);
+      font-size: clamp(2.5rem, 6vw, 4.7rem);
+      line-height: 1.04;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 20px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--green);
+      color: white;
+      font-weight: 800;
+      transition: transform .2s, background .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--green-light);
+    }
+
+    .btn.secondary {
+      background: white;
+      color: var(--green);
+      border: 1px solid #d6e3d6;
+    }
+
+    .hero-card {
+      background: white;
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 18px 55px rgba(23,77,54,.12);
+      transform: rotate(1deg);
+    }
+
+    .mate-art {
+      min-height: 260px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #cce8d0, #eaf5e8 50%, #c7e4f7);
+      display: grid;
+      place-items: center;
+      font-size: 7rem;
+    }
+
+    .hero-card h2 {
+      color: var(--green);
+      margin: 18px 0 6px;
+    }
+
+    .hero-card p {
+      font-size: .96rem;
+      margin: 0;
+    }
+
+    .section {
+      max-width: 1120px;
+      margin: auto;
+      padding: 76px 22px;
+    }
+
+    .section-heading {
+      max-width: 690px;
+      margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      color: var(--green);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border: 1px solid #e5eae2;
+      border-radius: 17px;
+      box-shadow: 0 6px 20px rgba(25, 58, 38, .04);
+    }
+
+    .card-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--mint);
+      font-size: 1.7rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      color: var(--green);
+      font-size: 1.2rem;
+      margin-bottom: 9px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 17px;
+    }
+
+    .text-link {
+      color: var(--green-light);
+      font-weight: 800;
+    }
+
+    .guide {
+      background: var(--mint);
+      border-radius: 24px;
+      padding: 34px;
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .guide h2 {
+      font-size: 2rem;
+      color: var(--green);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .guide p {
+      color: var(--muted);
+    }
+
+    .steps {
+      display: grid;
+      gap: 13px;
+    }
+
+    .step {
+      display: flex;
+      gap: 13px;
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      align-items: flex-start;
+    }
+
+    .number {
+      min-width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--green);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .step strong {
+      color: var(--green);
+    }
+
+    .step p {
+      font-size: .94rem;
+      margin-top: 3px;
+    }
+
+    .quiz {
+      background: #fff;
+      border: 1px solid #e3e9e2;
+      border-radius: 20px;
+      padding: 28px;
+      max-width: 760px;
+    }
+
+    .quiz h3 {
+      color: var(--green);
+      margin-bottom: 12px;
+      font-size: 1.35rem;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .quiz-option {
+      padding: 13px 15px;
+      text-align: left;
+      background: #f7f8f4;
+      border: 1px solid #dfe6dc;
+      border-radius: 10px;
+      color: var(--ink);
+    }
+
+    .quiz-option:hover:not(:disabled) {
+      border-color: var(--green-light);
+      background: var(--mint);
+    }
+
+    .quiz-option:disabled {
+      cursor: default;
+      opacity: .8;
+    }
+
+    #feedback {
+      min-height: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .facts {
+      background: linear-gradient(110deg, var(--green), #236c49);
+      color: white;
+      border-radius: 24px;
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .facts h2 {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .facts p {
+      color: #e3eee5;
+    }
+
+    .fact-item {
+      background: rgba(255,255,255,.1);
+      padding: 17px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .fact-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    footer {
+      background: #103b29;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    footer p {
+      color: #d7e8da;
+      font-size: .92rem;
+      margin-top: 5px;
+    }
+
+    .notice {
+      color: var(--muted);
+      font-size: .88rem;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .navlinks {
+        gap: 13px;
+      }
+
+      .hero {
+        padding: 52px 20px;
+      }
+
+      .hero-inner, .guide, .facts {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        transform: none;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 54px 20px;
+      }
+
+      .guide, .facts {
+        padding: 24px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    🇦🇷 Una tradición que nos une, un mate que compartimos.
+  </div>
+
+  <header>
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="brand" href="#inicio">Club <span>del Mate</span> 🧉</a>
+      <div class="navlinks">
+        <a href="#guias">Guías</a>
+        <a href="#curiosidades">Curiosidades</a>
+        <a href="#juegos">Juegos</a>
+        <a href="#nosotros">El club</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Bienvenido a tu rincón matero</div>
+          <h1>Mucho más que una bebida.</h1>
+          <p>
+            Descubrí la cultura del mate: aprendé a prepararlo,
+            conocé sus secretos y poné a prueba cuánto sabés
+            de nuestra tradición.
+          </p>
+          <div class="actions">
+            <a class="btn" href="#guias">Explorar las guías</a>
+            <a class="btn secondary" href="#juegos">Jugar ahora 🎯</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="mate-art" role="img" aria-label="Ilustración de un mate">🧉</div>
+          <h2>El ritual de todos los días</h2>
+          <p>Un momento para compartir, charlar y disfrutar.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="guias">
+      <div class="section-heading">
+        <div class="eyebrow">Aprendé con el club</div>
+        <h2>Convertite en un experto matero</h2>
+        <p>Guías sencillas para conocer mejor el mate, desde los primeros pasos hasta los pequeños detalles.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-icon">🧉</div>
+          <h3>Cómo preparar mate</h3>
+          <p>Conocé los pasos básicos para preparar un mate rico y disfrutar cada cebada.</p>
+          <a class="text-link" href="#preparacion">Ver la guía →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🌡️</div>
+          <h3>El agua ideal</h3>
+          <p>Aprendé por qué conviene evitar el agua hirviendo y cómo cuidar el sabor de la yerba.</p>
+          <a class="text-link" href="#preparacion">Descubrir consejos →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🌿</div>
+          <h3>Yerba y accesorios</h3>
+          <p>Conocé los tipos de yerba, los mates y las bombillas más comunes.</p>
+          <a class="text-link" href="#curiosidades">Explorar el mundo matero →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="preparacion">
+      <div class="guide">
+        <div>
+          <div class="eyebrow">Guía paso a paso</div>
+          <h2>Tu primer mate, bien preparado</h2>
+          <p>No hace falta ser un experto. Con algunos pasos simples podés preparar y compartir un buen mate.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="number">1</div>
+            <div>
+              <strong>Llená el mate</strong>
+              <p>Agregá yerba hasta aproximadamente tres cuartas partes del recipiente.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="number">2</div>
+            <div>
+              <strong>Formá la montañita</strong>
+              <p>Tapá la boca, incliná el mate suavemente y dejá la yerba acumulada a un costado.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="number">3</div>
+            <div>
+              <strong>Humedecé la yerba</strong>
+              <p>Colocá un poco de agua tibia en la parte baja y esperá unos segundos.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="number">4</div>
+            <div>
+              <strong>Colocá la bombilla</strong>
+              <p>Ubicala en la zona húmeda y evitá moverla mientras cebás.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="number">5</div>
+            <div>
+              <strong>Cebá sin hervir el agua</strong>
+              <p>Usá agua caliente, idealmente alrededor de 70–80 °C, y agregá pequeñas cantidades cerca de la bombilla.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="notice">Consejo: la temperatura es orientativa. Evitá el agua hirviendo para reducir el riesgo de quemaduras y cuidar el sabor.</p>
+    </section>
+
+    <section class="section" id="curiosidades">
+      <div class="facts">
+        <div>
+          <div class="eyebrow" style="color:#c7e8ce">¿Sabías que...?</div>
+          <h2>El mate tiene una historia enorme.</h2>
+          <p>Además de ser una infusión, es parte de una costumbre compartida por familias y amigos en Argentina y otros países de Sudamérica.</p>
+        </div>
+        <div>
+          <div class="fact-item">
+            <strong>🌱 La yerba mate</strong>
+            Proviene de las hojas de la planta Ilex paraguariensis.
+          </div>
+          <div class="fact-item">
+            <strong>🤝 Una ronda compartida</strong>
+            En muchas reuniones, compartir el mate es una forma de encuentro y hospitalidad.
+          </div>
+          <div class="fact-item">
+            <strong>🧉 Hay muchos estilos</strong>
+            Los recipientes pueden ser de calabaza, madera, metal, vidrio y otros materiales.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="juegos">
+      <div class="section-heading">
+        <div class="eyebrow">Desafío matero</div>
+        <h2>¿Cuánto sabés del mate?</h2>
+        <p>Contestá las preguntas y descubrí tu puntaje. ¡Invitá a alguien a jugar también!</p>
+      </div>
+
+      <div class="quiz">
+        <h3 id="question">Pregunta 1 de 5</h3>
+        <p id="question-text"></p>
+        <div class="quiz-options" id="options"></div>
+        <p id="feedback" aria-live="polite"></p>
+        <button class="btn" id="next" type="button">Siguiente pregunta →</button>
+        <p id="score" class="notice">Puntaje: 0</p>
+      </div>
+    </section>
+
+    <section class="section" id="nosotros">
+      <div class="section-heading">
+        <div class="eyebrow">Nuestra comunidad</div>
+        <h2>Este es el Club del Mate</h2>
+        <p>Un espacio para aprender, jugar y compartir la cultura matera. Prepará el agua, buscá tu mate y quedate un rato.</p>
+      </div>
+      <a class="btn" href="#inicio">Volver al inicio ↑</a>
+    </section>
+  </main>
+
+  <footer>
+    <strong>🧉 Club del Mate</strong>
+    <p>Una tradición que se disfruta mejor compartida.</p>
+    <p>Proyecto independiente hecho con cariño por la cultura matera.</p>
+  </footer>
+
+  <script>
+    const questions = [
+      {
+        q: "¿De qué planta proviene la yerba mate?",
+        options: ["Del cafeto", "De Ilex paraguariensis", "Del té verde"],
+        correct: 1,
+        explanation: "¡Correcto! La yerba mate se obtiene de Ilex paraguariensis."
+      },
+      {
+        q: "¿Conviene usar agua hirviendo para cebar mate?",
+        options: ["Sí, siempre", "No, es mejor evitarla", "Solo en verano"],
+        correct: 1,
+        explanation: "¡Bien! El agua hirviendo puede quemar y afectar el sabor."
+      },
+      {
+        q: "¿Qué se usa habitualmente para tomar mate?",
+        options: ["Una bombilla", "Un tenedor", "Una cuchara de madera larga"],
+        correct: 0,
+        explanation: "¡Exacto! La bombilla permite beber la infusión filtrándola."
+      },
+      {
+        q: "¿Qué significa compartir una ronda de mate para muchas personas?",
+        options: ["Una competencia", "Un momento de encuentro", "Una receta de cocina"],
+        correct: 1,
+        explanation: "¡Así es! Compartir mate es una costumbre social muy extendida."
+      },
+      {
+        q: "¿Cuál de estos materiales puede usarse para fabricar un mate?",
+        options: ["Calabaza", "Papel común", "Tela fina"],
+        correct: 0,
+        explanation: "¡Correcto! La calabaza es uno de los materiales tradicionales."
+      }
+    ];
+
+    let current = 0;
+    let points = 0;
+    let answered = false;
+
+    const questionNumber = document.getElementById("question");
+    const questionText = document.getElementById("question-text");
+    const optionsContainer = document.getElementById("options");
+    const feedback = document.getElementById("feedback");
+    const nextButton = document.getElementById("next");
+    const scoreText = document.getElementById("score");
+
+    function showQuestion() {
+      answered = false;
+      const item = questions[current];
+
+      questionNumber.textContent = `Pregunta ${current + 1} de ${questions.length}`;
+      questionText.textContent = item.q;
+      optionsContainer.innerHTML = "";
+      feedback.textContent = "";
+      nextButton.textContent = current === questions.length - 1
+        ? "Ver resultado"
+        : "Siguiente pregunta →";
+
+      item.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "quiz-option";
+        button.textContent = option;
+        button.addEventListener("click", () => chooseAnswer(index));
+        optionsContainer.appendChild(button);
+      });
+    }
+
+    function chooseAnswer(index) {
+      if (answered) return;
+      answered = true;
+
+      const item = questions[current];
+      const buttons = optionsContainer.querySelectorAll("button");
+
+      buttons.forEach((button, i) => {
+        button.disabled = true;
+        if (i === item.correct) {
+          button.style.borderColor = "#26734c";
+          button.style.background = "#e8f3e9";
+        }
+      });
+
+      if (index === item.correct) {
+        points++;
+        feedback.textContent = "✅ " + item.explanation;
+      } else {
+        feedback.textContent = "💡 " + item.explanation;
+      }
+
+      scoreText.textContent = `Puntaje: ${points}`;
+    }
+
+    nextButton.addEventListener("click", () => {
+      if (!answered) {
+        feedback.textContent = "Elegí una respuesta antes de continuar.";
+        return;
+      }
+
+      if (current < questions.length - 1) {
+        current++;
+        showQuestion();
+      } else {
+        questionNumber.textContent = "¡Desafío terminado!";
+        questionText.textContent = `Tu resultado es ${points} de ${questions.length} respuestas correctas.`;
+        optionsContainer.innerHTML = "";
+        feedback.textContent = points === questions.length
+          ? "🏆 ¡Sos un verdadero experto matero!"
+          : points >= 3
+            ? "🧉 ¡Muy bien! Sabés bastante del mate."
+            : "🌿 ¡Buen comienzo! Volvé a jugar y aprendé más.";
+        nextButton.textContent = "Volver a jugar";
+        scoreText.textContent = `Puntaje final: ${points}/${questions.length}`;
+        nextButton.onclick = () => {
+          current = 0;
+          points = 0;
+          scoreText.textContent = "Puntaje: 0";
+          nextButton.onclick = null;
+          showQuestion();
+        };
+      }
+    });
+
+    showQuestion();
+  </script>
+</body>
+</html>
